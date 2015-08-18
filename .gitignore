@@ -1,0 +1,16 @@
+
+*.xml
+
+*.txt
+
+*.properties
+
+TrabArquivo/build/classes/.netbeans_automatic_build
+
+TrabArquivo/build/classes/.netbeans_update_resources
+
+TrabArquivo/manifest.mf
+
+TrabArquivo/build/classes/Estudante.class
+
+TrabArquivo/build/classes/principal.class
