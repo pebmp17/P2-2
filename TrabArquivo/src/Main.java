@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /*
@@ -16,28 +17,34 @@ public class Main {
 
     public static void main(String[] args) {
         String arq;
-        String alunoln;
+        String loopAsk;
         Scanner tec = new Scanner(System.in);
-        ArrayList <Provas> testes = new ArrayList<>();
+        ArrayList<Provas> testes = new ArrayList<Provas>();
         Provas p = new Provas();
-        
+
         System.out.println("");
-        arq = tec.next();
-        File disciplina = new File(arq);
-        disciplina.mkdir();
-        
+       // arq = tec.next();
+       // File disciplina = new File(arq);
+       // disciplina.mkdir();
+
         while (true) {
-            alunoln = null;
-            System.out.println("Resposta do Aluno");
-            p.setResposta(tec.next());
-            System.out.println("Nome do Aluno");
-            p.setNome(tec.next());
+           /// System.out.println("Resposta do Aluno");
+            p.setResposta(null);
+            p.setAcertos(0);
+            System.out.println (" Nome do Aluno");
+            loopAsk = tec.next();
+            p.setNome(loopAsk);
+            testes.add(p);
             System.out.println("Continuar s/n");
-            alunoln = tec.next();
-            if (alunoln.equals("n")) {
+            loopAsk = tec.next();
+            if (loopAsk.equals("n")) {
                 break;
             }
         }
+        ///testes.sort(Comparator.comparing(Provas::getNome));
+        for (Provas t : testes) {
+            System.out.println(testes.indexOf(t)+t.getNome());
+        }
+        System.out.println(testes.size());
     }
-
 }
