@@ -14,3 +14,5 @@ TrabArquivo/manifest.mf
 TrabArquivo/build/classes/Estudante.class
 
 TrabArquivo/build/classes/principal.class
+
+*.class
