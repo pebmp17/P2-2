@@ -52,7 +52,7 @@ public class Main {
         while (true) {
             System.out.println("Qual o nome da disciplina?");
             disciplina = tec.next();
-            File diretorio = new File(disciplina);
+            File diretorio = new File("Escola");
             diretorio.mkdir();
             loopAsk = null;
             for (int i = 1; i < 11; i++) {
@@ -62,9 +62,9 @@ public class Main {
                 } else {
                     loopAsk = loopAsk + tec.next().toUpperCase();
                 }
-                System.err.println(loopAsk);
+                //   System.err.println(loopAsk);
             }
-            FileWriter fw1 = new FileWriter(disciplina + "\\Gabarito.txt");
+            FileWriter fw1 = new FileWriter("Escola\\" + disciplina + "Gabarito.txt");
             BufferedWriter bw1 = new BufferedWriter(fw1);
             bw1.write(loopAsk);
             bw1.close();
@@ -80,17 +80,18 @@ public class Main {
         String GabE[];
         String reorder;
         int acertos = 0;
+        float media = 0;
         String estudante;
         while (true) {
             System.out.println("Nome da Disciplina para Conferir");
             loopAsk = tec.next();
             try {
-                FileReader fr2 = new FileReader(loopAsk + "\\Gabarito.txt");
+                FileReader fr2 = new FileReader("Escola\\" + loopAsk + "Gabarito.txt");
                 BufferedReader br2 = new BufferedReader(fr2);
                 Gab = br2.readLine();
                 br2.close();
                 fr2.close();
-                FileWriter fw1 = new FileWriter(disciplina + "\\ResultadoOrdenado01.txt");
+                FileWriter fw1 = new FileWriter("Escola\\" + loopAsk + "Ordenado01.txt");
                 BufferedWriter bw1 = new BufferedWriter(fw1);
                 ArrayList<String> arrayInv = new ArrayList<>();
                 for (String teste : testes) {
@@ -111,6 +112,7 @@ public class Main {
                         estudante = GabE[0] + "/" + GabE[1] + "/" + acertos;
                         reorder = acertos + "/" + GabE[1] + "/" + GabE[0];
                     }
+                    media = media + acertos;
                     arrayInv.add(reorder);
                     acertos = 0;
                     bw1.write(estudante);
@@ -118,18 +120,34 @@ public class Main {
                 }
                 bw1.close();
                 fw1.close();
-                fw1 = new FileWriter(disciplina + "\\ResultadoOrdenado02.txt");
+                fw1 = new FileWriter("Escola\\" + loopAsk + "Ordenado02.txt");
                 bw1 = new BufferedWriter(fw1);
-                for (int i= arrayInv.size() - 1 ; i >= 0; i--) {
+                for (int i = arrayInv.size() - 1; i >= 0; i--) {
                     bw1.write(arrayInv.get(i));
                     bw1.newLine();
                 }
+                bw1.write("Media:" + media / arrayInv.size());
                 bw1.close();
                 fw1.close();
                 break;
             } catch (IOException e) {
                 System.out.println("Nome da Disciplina Invalido");
             }
+        }
+        while (true) {
+            loopAsk = tec.next();
+            File escola = new File("Escola");
+            File lista[] = escola.listFiles();
+            for (int i = 0; i < lista.length; i++) {
+                for (String teste : testes) {
+                    GabE = teste.split("/");
+                    if (GabE[1].equals(loopAsk)){
+                        
+                    }
+                    
+                }
+            }
+
         }
     }
 }
