@@ -1,3 +1,5 @@
+package p2.pkg2;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +12,7 @@ import java.util.*;
  *
  * @author Aula
  */
-public class P22 {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -21,7 +23,7 @@ public class P22 {
         ArrayList<String> testes = new ArrayList<>();
         System.out.println("");
         while (true) {
-            System.out.println("Nome do Aluno");
+            System.out.println("Acertos do Aluno");
             loopAsk = tec.next();
             System.out.println("Resposta do Aluno");
             for (int i = 1; i < 11; i++) {
@@ -76,6 +78,7 @@ public class P22 {
         ////Conferir Respostas
         String Gab;
         String GabE[];
+        String reorder;
         int acertos = 0;
         String estudante;
         while (true) {
@@ -89,16 +92,36 @@ public class P22 {
                 fr2.close();
                 FileWriter fw1 = new FileWriter(disciplina + "\\ResultadoOrdenado01.txt");
                 BufferedWriter bw1 = new BufferedWriter(fw1);
+                ArrayList<String> arrayInv = new ArrayList<>();
                 for (String teste : testes) {
                     GabE = teste.split("/");
-                    for (int i = 0; i < 10; i++) {
-                        if (Gab.charAt(i) == GabE[1].charAt(i)) {
-                            acertos++;
+                    if ((GabE[1]).equals("VVVVVVVVVV") || GabE[1].equals("FFFFFFFFFF")) {
+                        acertos = 0;
+                    } else {
+                        for (int i = 0; i < 10; i++) {
+                            if (Gab.charAt(i) == GabE[1].charAt(i)) {
+                                acertos++;
+                            }
                         }
                     }
-                    estudante = GabE[0] + "/" + GabE[1] + "/" + acertos;
+                    if (acertos < 10) {
+                        estudante = GabE[0] + "/" + GabE[1] + "/" + "0" + acertos;
+                        reorder = "0" + acertos + "/" + GabE[1] + "/" + GabE[0];
+                    } else {
+                        estudante = GabE[0] + "/" + GabE[1] + "/" + acertos;
+                        reorder = acertos + "/" + GabE[1] + "/" + GabE[0];
+                    }
+                    arrayInv.add(reorder);
                     acertos = 0;
                     bw1.write(estudante);
+                    bw1.newLine();
+                }
+                bw1.close();
+                fw1.close();
+                fw1 = new FileWriter(disciplina + "\\ResultadoOrdenado02.txt");
+                bw1 = new BufferedWriter(fw1);
+                for (int i= arrayInv.size() - 1 ; i >= 0; i--) {
+                    bw1.write(arrayInv.get(i));
                     bw1.newLine();
                 }
                 bw1.close();
@@ -107,9 +130,6 @@ public class P22 {
             } catch (IOException e) {
                 System.out.println("Nome da Disciplina Invalido");
             }
-
         }
-
     }
-
 }
