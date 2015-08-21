@@ -16,6 +16,7 @@ public class Main {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
         String aluno, disciplina, resposta = null;
@@ -119,6 +120,7 @@ public class Main {
                 bw1.newLine();
             }
             bw1.write("Media:" + media / arrayInv.size());
+            testes.clear();
             bw1.close();
             fw1.close();
             System.out.println("Correcao de notas gerada em arquivos: " + "Escola\\" + loopAsk + "Ordenado01.txt" + "Escola\\" + loopAsk + "Ordenado02.txt");
@@ -128,7 +130,6 @@ public class Main {
                 break;
             }
         }
-        testes.clear();
         float media = 0;
         String GabE[];
         while (true) {
@@ -147,7 +148,7 @@ public class Main {
                             //System.err.println("GabE[2]: " + GabE[2]);
                             testes.add(GabE[0] + "/" + GabE[1] + "/" + GabE[2] + "---" + lista1.getName());
                             media = media + Integer.parseInt(GabE[2]);
-                            System.err.println("String Adicionada");
+                        //     System.err.println("String Adicionada");
                         }
                     }
                 }
@@ -162,11 +163,12 @@ public class Main {
                 t = testes.get(i);
                 bw1.write(t);
                 bw1.newLine();
-                System.err.println("String Escrita");
+             //   System.err.println("String Escrita");
             }
             bw1.write(Float.toString(media / i));
             bw1.close();
             fw1.close();
+            System.out.println("Historico Gerado");
             System.out.println("Continuar? [s/n]");
             loopAsk = tec.next();
             if (loopAsk.equals("n")) {
