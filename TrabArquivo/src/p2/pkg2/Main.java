@@ -39,7 +39,7 @@ public class Main {
             testes.add(aluno);
             resposta = null;
             //   System.err.println( testes.indexOf(aluno));
-            System.out.println("Continuar cadastrando notas s/n");
+            System.out.println("Continuar cadastrando notas de Alunos? s/n");
             aluno = tec.next();
             if (aluno.equals("n")) {
                 break;
@@ -50,7 +50,7 @@ public class Main {
         //     System.out.println(t);
         // }
         while (true) {
-            System.out.println("Qual o nome da disciplina?");
+            System.out.println("Qual o nome da disciplina:");
             disciplina = tec.next();
             File diretorio = new File("Escola");
             diretorio.mkdir();
@@ -64,13 +64,14 @@ public class Main {
                 }
                 //   System.err.println(loopAsk);
             }
+            System.out.println("Localizaçao do Arquivo: "+ "Escola\\" + disciplina + "Gabarito.txt");
             FileWriter fw1 = new FileWriter("Escola/" + disciplina + "Gabarito.txt");
             BufferedWriter bw1 = new BufferedWriter(fw1);
             bw1.write(loopAsk);
             bw1.close();
             fw1.close();
             
-            System.out.println("Continuar Cadastrando Disciplinas s/n");
+            System.out.println("Continuar Cadastrando Gabaritos? s/n");
             loopAsk = tec.next();
             if (loopAsk.equals("n")) {
                 break;
@@ -87,12 +88,12 @@ public class Main {
             System.out.println("Nome da Disciplina para Conferir");
             loopAsk = tec.next();
             try {
-                FileReader fr2 = new FileReader("Escola/" + loopAsk + "Gabarito.txt");
+                FileReader fr2 = new FileReader("Escola\\" + loopAsk + "Gabarito.txt");
                 BufferedReader br2 = new BufferedReader(fr2);
                 Gab = br2.readLine();
                 br2.close();
                 fr2.close();
-                FileWriter fw1 = new FileWriter("Escola/" + loopAsk + "Ordenado01.txt");
+                FileWriter fw1 = new FileWriter("Escola\\" + loopAsk + "Ordenado01.txt");
                 BufferedWriter bw1 = new BufferedWriter(fw1);
                 ArrayList<String> arrayInv = new ArrayList<>();
                 for (String teste : testes) {
@@ -121,7 +122,7 @@ public class Main {
                 }
                 bw1.close();
                 fw1.close();
-                fw1 = new FileWriter("Escola/" + loopAsk + "Ordenado02.txt");
+                fw1 = new FileWriter("Escola\\" + loopAsk + "Ordenado02.txt");
                 bw1 = new BufferedWriter(fw1);
                 for (int i = arrayInv.size() - 1; i >= 0; i--) {
                     bw1.write(arrayInv.get(i));
@@ -160,7 +161,7 @@ public class Main {
                 br2.close();
                 fr2.close();
             }
-            FileWriter fw1 = new FileWriter("Escola/" + loopAsk + ".txt");
+            FileWriter fw1 = new FileWriter("Escola\\" + loopAsk + ".txt");
             BufferedWriter bw1 = new BufferedWriter(fw1);
             int i;
             String t;
@@ -173,7 +174,7 @@ public class Main {
             bw1.write(Float.toString(media/i));
             bw1.close();
             fw1.close();
-            System.out.println("Continuar s/n");
+            System.out.println("Continuar? [s/n]");
             loopAsk = tec.next();
             if (loopAsk.equals("n")) {
                 break;
