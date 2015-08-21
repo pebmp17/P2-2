@@ -84,7 +84,7 @@ public class Main {
             Gab = br2.readLine();
             br2.close();
             fr2.close();
-            fw1 = new FileWriter("Escola\\" + loopAsk + "Ordenado01.txt");
+            fw1 = new FileWriter("Escola\\" + disciplina + "Ordenado01.txt");
             bw1 = new BufferedWriter(fw1);
             ArrayList<String> arrayInv = new ArrayList<>();
             for (String teste : testes) {
@@ -113,18 +113,18 @@ public class Main {
             }
             bw1.close();
             fw1.close();
-            fw1 = new FileWriter("Escola\\" + loopAsk + "Ordenado02.txt");
+            fw1 = new FileWriter("Escola\\" + disciplina + "Ordenado02.txt");
             bw1 = new BufferedWriter(fw1);
             for (int i = arrayInv.size() - 1; i >= 0; i--) {
                 bw1.write(arrayInv.get(i));
                 bw1.newLine();
             }
             bw1.write("Media:" + media / arrayInv.size());
-            testes.clear();
             bw1.close();
             fw1.close();
-            System.out.println("Correcao de notas gerada em arquivos: " + "Escola\\" + loopAsk + "Ordenado01.txt" + "Escola\\" + loopAsk + "Ordenado02.txt");
+            System.out.println("Correcao de notas gerada em arquivos: " + "Escola\\" + disciplina + "Ordenado01.txt" + "Escola\\" + disciplina + "Ordenado02.txt");
             System.out.println("Adicionar outra disciplina? [s/n]");
+            testes.clear();
             loopAsk = tec.next();
             if (loopAsk.equals("n")) {
                 break;
@@ -169,7 +169,7 @@ public class Main {
             bw1.close();
             fw1.close();
             System.out.println("Historico Gerado");
-            System.out.println("Continuar? [s/n]");
+            System.out.println("Gerar outro Historico? [s/n]");
             loopAsk = tec.next();
             if (loopAsk.equals("n")) {
                 break;
