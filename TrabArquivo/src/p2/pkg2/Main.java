@@ -18,16 +18,16 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        String loopAsk, disciplina, resposta = null;
+        String aluno, disciplina, resposta = null;
         Scanner tec = new Scanner(System.in);
         ArrayList<String> testes = new ArrayList<>();
-        System.out.println("");
+        String loopAsk;
         while (true) {
-            System.out.println("Acertos do Aluno");
-            loopAsk = tec.next();
+            System.out.println("Nome do Aluno");
+            aluno = tec.next();
             System.out.println("Resposta do Aluno");
             for (int i = 1; i < 11; i++) {
-                System.out.println("Digite a resposta da " + i + "a questao.");
+                System.out.println("Digite a resposta da " + i + "a questao.[V/F]");
                 if (resposta == null) {
                     resposta = tec.next().toUpperCase();
                 } else {
@@ -35,20 +35,20 @@ public class Main {
                 }
                 // System.err.println(loopAsk);
             }
-            loopAsk = loopAsk + "/" + resposta + "/" + "99";
-            testes.add(loopAsk);
+            aluno = aluno + "/" + resposta + "/" + "99";
+            testes.add(aluno);
             resposta = null;
-            //   System.err.println( testes.indexOf(loopAsk));
-            System.out.println("Continuar s/n");
-            loopAsk = tec.next();
-            if (loopAsk.equals("n")) {
+            //   System.err.println( testes.indexOf(aluno));
+            System.out.println("Continuar cadastrando notas s/n");
+            aluno = tec.next();
+            if (aluno.equals("n")) {
                 break;
             }
         }
         Collections.sort(testes, String.CASE_INSENSITIVE_ORDER);
        // for (String t : testes) {
-       //     System.out.println(t);
-       // }
+        //     System.out.println(t);
+        // }
         while (true) {
             System.out.println("Qual o nome da disciplina?");
             disciplina = tec.next();
@@ -56,7 +56,7 @@ public class Main {
             diretorio.mkdir();
             loopAsk = null;
             for (int i = 1; i < 11; i++) {
-                System.out.println("Digite a resposta da " + i + "a questao.");
+                System.out.println("Digite a resposta da " + i + "a questao.[V/F]");
                 if (loopAsk == null) {
                     loopAsk = tec.next().toUpperCase();
                 } else {
@@ -69,7 +69,8 @@ public class Main {
             bw1.write(loopAsk);
             bw1.close();
             fw1.close();
-            System.out.println("Continuar s/n");
+            
+            System.out.println("Continuar Cadastrando Disciplinas s/n");
             loopAsk = tec.next();
             if (loopAsk.equals("n")) {
                 break;
@@ -146,9 +147,14 @@ public class Main {
                 BufferedReader br2 = new BufferedReader(fr2);
                 while (fr2.ready()) {
                     GabE = br2.readLine().split("/");
-                    if (GabE[1].equals(loopAsk)) {
-                        testes.add(GabE[0] + GabE[1] + GabE[2]);
-                        media = media + Integer.parseInt(GabE[2]);
+                    if (GabE.length == 3) {
+                        if (GabE[0].equals(loopAsk)) {
+                            System.err.println("GabE[0]: "+ GabE[0]);
+                            System.err.println("GabE[2]: "+ GabE[2]);
+                            testes.add(GabE[0] +"/"+GabE[1] +"/"+ GabE[2]+ "---"+ lista1.getName());
+                            media = media + Integer.parseInt(GabE[2]);
+                            System.err.println("String Adicionada");
+                        }
                     }
                 }
                 br2.close();
@@ -156,11 +162,15 @@ public class Main {
             }
             FileWriter fw1 = new FileWriter("Escola/" + loopAsk + ".txt");
             BufferedWriter bw1 = new BufferedWriter(fw1);
-            for (String t : testes) {
+            int i;
+            String t;
+            for (i = 0; i<testes.size();i++) {
+                t = testes.get(i);
                 bw1.write(t);
                 bw1.newLine();
+                System.err.println("String Escrita");
             }
-            bw1.write(Float.toString(media));
+            bw1.write(Float.toString(media/i));
             bw1.close();
             fw1.close();
             System.out.println("Continuar s/n");
